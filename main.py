@@ -12,6 +12,7 @@ import os.path
 English_Movies_Only = True
 Discard_Actors_With_Incomplete_Information = True
 Use_Top_Six_Featured_Cast_Per_Movie_Only = False
+Race_To_Test_Enrichment = "white"
 
 #===============================================================
 # Create an “actor” object for easy management of actor data
@@ -289,7 +290,12 @@ if Discard_Actors_With_Incomplete_Information == True:
     N = len(All_Actors)
 
 Black_Actors = [i for i in All_Actors if "Black" in i.race]
-K = len(Black_Actors)
+White_Actors = [i for i in All_Actors if "White" in i.race]
+
+if Race_To_Test_Enrichment == "black":
+    K = len(Black_Actors)
+elif Race_To_Test_Enrichment == "white":
+    K = len(White_Actors)
 
 
 #===============================================================
@@ -304,9 +310,14 @@ Nominees = ["Steve Carell","Bradley Cooper","Benedict Cumberbatch","Michael Keat
 
 Nominees_in_Database = [i for i in All_Actors if i.name in Nominees]
 Black_Nominees = [i for i in Nominees_in_Database if "Black" in i.race]
+White_Nominees = [i for i in Nominees_in_Database if "White" in i.race]
 
 n = len(Nominees_in_Database)
-k = len(Black_Nominees)
+
+if Race_To_Test_Enrichment == "black":
+    k = len(Black_Nominees)
+elif Race_To_Test_Enrichment == "white":
+    k = len(White_Nominees)
 
 
 #===============================================================
@@ -319,5 +330,28 @@ import scipy.stats as stats
 P_Value_OverRepresentation = stats.hypergeom.sf(int(k) - 1,int(N),int(K),int(n))
 P_Value_UnderRepresentation = stats.hypergeom.cdf(int(k) + 1,int(N),int(K),int(n))
 
+
+#===============================================================
+# OUTPUT
+#===============================================================
+print " "
 print "Overrepresentation p-value: " + str(P_Value_OverRepresentation)
 print "Underrepresentation p-value: " + str(P_Value_UnderRepresentation)
+print " "
+print "ASSUMPTIONS:"
+if Race_To_Test_Enrichment == "black":
+    print "Values are examining representation of black actors."
+elif Race_To_Test_Enrichment == "white":
+    print "Values are examining representation of white actors."
+if Discard_Actors_With_Incomplete_Information == True:
+    print "We are ignoring actors that do not have available racial information."
+else:
+    print "We are NOT ignoring actors that do not have available racial information."  
+if English_Movies_Only == True:
+    print "We are ignoring actors cast in non-English movies."
+else:
+    print "We are NOT ignoring actors cast in non-English movies."
+if Use_Top_Six_Featured_Cast_Per_Movie_Only == True:
+    print "We are only considering the top six credited actors of the movie on TMDB."
+else:
+    print "We are considering all credited actors of the movie on TMDB."
