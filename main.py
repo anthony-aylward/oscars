@@ -3,8 +3,19 @@ import urllib
 from copy import deepcopy
 import codecs
 import os.path
+#from progressbar import ProgressBar
+#pbar = ProgressBar()
 
+#===============================================================
+# OUR ASSUMPTIONS
+#===============================================================
+English_Movies_Only = True
+Discard_Actors_With_Incomplete_Information = True
+Use_Top_Six_Featured_Cast_Per_Movie_Only = True
+
+#===============================================================
 # Create an “actor” object for easy management of actor data
+#===============================================================
 class Actor(object):
     def __init__(self, name):
         self.name = name
@@ -13,8 +24,11 @@ class Actor(object):
         self.birthdate = ''
         self.movie_roles = []
 
+
+#===============================================================
 # Create a “movie” object for easy management of movie data
 # We may want to normalize actors by roles in high-budget movies, domestic movies, etc
+#===============================================================
 class Movie(object):
     def __init__(self,title):
         self.title = title
@@ -25,9 +39,11 @@ class Movie(object):
         self.important_cast = []
 
 
+#===============================================================
 # Data source: TMDB
 # https://www.themoviedb.org/
 # First step: Mining how many pages of listings exist for movies in 2014
+#===============================================================
 i = 1
 TMDB_LINK = "https://www.themoviedb.org/discover/movie?page=" + str(i) + "&year=&primary_release_year=2014&sort_by=&vote_count.gte=&with_genres=&with_keywords=&media_type=movie"
 urllib.urlretrieve(TMDB_LINK, '2014movies_page1.txt')
@@ -40,8 +56,11 @@ PageNum = PageNum.split("</p>")[0]
 PageNum = int(PageNum)
 
 
+#===============================================================
 # Second step: Mining the movies on each page for the movies in 2014 listing (Results stored in MovieIDs list)
+#===============================================================
 MovieIDs = []
+print "Loading Database..."
 for i in range(0,PageNum):
     TMDB_LINK = "https://www.themoviedb.org/discover/movie?page=" + str(i+1) + "&year=&primary_release_year=2014&sort_by=&vote_count.gte=&with_genres=&with_keywords=&media_type=movie"
     if os.path.isfile('2014movies_page' + str(i+1) + '.txt') == False:
@@ -59,8 +78,11 @@ for i in range(0,PageNum):
     MovieIDs += Raw_MovieLists
 MovieIDs = list(set(MovieIDs))
 
+
+#===============================================================
 # Third step: Mining the actors on each page for the movies with the retrieved Movie IDs
 # This is also where we will fill out attribute information for each movie
+#===============================================================
 ActorIDs = []
 All_Actors = []
 All_Movies = []
@@ -130,14 +152,38 @@ for i in range(0,len(MovieIDs)):
             All_Actors += [NewActor]
         
     All_Movies += [Current_Movie]
-    
+
+
+
+# If we only want to look at actors in english speaking movies,
+# We need to filter out all actors that don't appear in movies with language code 'en'
+if English_Movies_Only == True:
+    import itertools
+    All_Movies = [j for j in All_Movies if "en" in j.language]
+    English_Actors = [j.important_cast for j in All_Movies]
+    English_Actors = list(set(itertools.chain(*English_Actors)))
+    All_Actors = [j for j in All_Actors if j.name in English_Actors]
+    ActorIDs = [j for j in ActorIDs if j in English_Actors]
+
+# We can also impose the claim that only the most prominent (the six top-listed stars)
+# actors in a movie would ever reasonably be expected to be in the pool for potential nominees
+if Use_Top_Six_Featured_Cast_Per_Movie_Only == True:
+    import itertools
+    Top_Six_Cast = [j.important_cast[0:6] for j in All_Movies]
+    Top_Six_Cast = list(set(itertools.chain(*Top_Six_Cast)))
+    All_Actors = [j for j in All_Actors if j.name in Top_Six_Cast]
+    ActorIDs = [j for j in ActorIDs if j in Top_Six_Cast]
+
+
 N = len(ActorIDs)
 
 
 
+#===============================================================
 # Data source: NNDB
 # http://www.nndb.com/
 # Fourth step: Consolidating NNDB Information into a local alphabetical listing
+#===============================================================
 Alphabetical_NNDB = ["http://www.nndb.com/lists/493/000063304/",
                      "http://www.nndb.com/lists/494/000063305/",
                      "http://www.nndb.com/lists/495/000063306/",
@@ -175,10 +221,12 @@ for i in range(0,len(Alphabet)):
     f.close()
     
 
+#===============================================================
 # Fifth step: Mining the actor info on each actor page with the retrieved actor IDs (their names)
+#===============================================================
 print "Fetching Actor Information..."
 for i in range(0,len(All_Actors)):
-    print i
+    #print i
     Current_Actor = All_Actors[i].name
 
     # Dealing with edge cases....
@@ -234,17 +282,23 @@ for i in range(0,len(All_Actors)):
         All_Actors[i].birthdate = Temp_DOB_Final
 
 
+if Discard_Actors_With_Incomplete_Information == True:
+    All_Actors = [i for i in All_Actors if i.race != '']
+    N = len(All_Actors)
+
 Black_Actors = [i for i in All_Actors if "Black" in i.race]
 K = len(Black_Actors)
 
 
+#===============================================================
 # Data source: ABC
 # http://oscar.go.com/nominees
 # Sixth step: Listing out the oscar nominees
+#===============================================================
 Nominees = ["Steve Carell","Bradley Cooper","Benedict Cumberbatch","Michael Keaton","Eddie Redmayne",
             "Robert Duvall","Ethan Hawke","Edward Norton","Mark Ruffalo","J.K. Simmons",
             "Marion Cotillard","Felicity Jones","Julianne Moore","Rosamund Pike","Reese Witherspoon",
-            "Patricia Arquette","Laura Dern","Keira Knightly","Emma Stone","Meryl Streep"]
+            "Patricia Arquette","Laura Dern","Keira Knightley","Emma Stone","Meryl Streep"]
 
 Nominees_in_Database = [i for i in All_Actors if i.name in Nominees]
 Black_Nominees = [i for i in Nominees_in_Database if "Black" in i.race]
@@ -252,10 +306,16 @@ Black_Nominees = [i for i in Nominees_in_Database if "Black" in i.race]
 n = len(Nominees_in_Database)
 k = len(Black_Nominees)
 
+
+#===============================================================
 # Seventh step: Hypergeometric Enrichment!
 # Way to interpret:
 # A significant value for P_Value_OverRepresentation means that our feature is over-represented in our selection
 # A significant value for P_Value_UnderRepresentation means that our feature is under-represented in our selection
+#===============================================================
 import scipy.stats as stats
 P_Value_OverRepresentation = stats.hypergeom.sf(int(k) - 1,int(N),int(K),int(n))
 P_Value_UnderRepresentation = stats.hypergeom.cdf(int(k) + 1,int(N),int(K),int(n))
+
+print "Overrepresentation p-value: " + str(P_Value_OverRepresentation)
+print "Underrepresentation p-value: " + str(P_Value_UnderRepresentation)
