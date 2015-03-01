@@ -11,7 +11,7 @@ import os.path
 #===============================================================
 English_Movies_Only = True
 Discard_Actors_With_Incomplete_Information = True
-Use_Top_Six_Featured_Cast_Per_Movie_Only = True
+Use_Top_Six_Featured_Cast_Per_Movie_Only = False
 
 #===============================================================
 # Create an “actor” object for easy management of actor data
@@ -276,6 +276,8 @@ for i in range(0,len(All_Actors)):
         else:
             Temp_Race = Temp_ActorInfo.split("<b>Race or Ethnicity:</b> ")[1]
             Temp_Race = Temp_Race.split("<br>")[0]
+            if " <" in Temp_Race:
+                Temp_Race = Temp_Race.split(" <")[0]
 
         All_Actors[i].gender = Temp_Gender
         All_Actors[i].race = Temp_Race
