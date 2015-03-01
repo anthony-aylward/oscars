@@ -1,7 +1,8 @@
 # oscars
 Assessing the racial bias of the 2014 Oscars
 
-Big Picture Procedure: Hypergeometric Enrichment Test
+Big Picture
+Procedure: Hypergeometric Enrichment Test
 N: Total number of active actors/actresses in 2014
 K: Total number of active actors/actresses in 2014 who are black
 n: Total number of actors/actresses nominated for an Oscar for 2014 performances
@@ -12,7 +13,8 @@ Ideas:
 TMDB Data mining using their API: https://www.themoviedb.org/documentation/api
 
 
-IMDB Data mining using all the patience I can muster http://www.imdb.com/search/title?at=0&countries=us&sort=moviemeter,asc&title_type=feature,tv_series&year=2014,2014
+IMDB Data mining using all the patience I can muster
+http://www.imdb.com/search/title?at=0&countries=us&sort=moviemeter,asc&title_type=feature,tv_series&year=2014,2014
 Mine all movie IDs from IMDB using the above search page as a starting point
 Mine actor/actress IDs from all IMDB movie pages with the retrieved movie IDs
 Mine actor/actress information from all IMDB person pages with retrieved actor IDs
@@ -23,8 +25,10 @@ Ideas:
 If method 2 for finding N is used, use a keyword search in the already-retrieved actor/actress descriptions for ethnic background. If no european or hispanic ancestry is specified, then they are most likely to be black.
 
 
-Eigenface detection - train a classifier to distinguish black faces from non-black faces and use the trained classifier to detect if an actor is black based on their portrait.
-Potential reading material/code inspiration: http://www.mathworks.com/matlabcentral/fileexchange/45915-eigenfaces-algorithm
+Eigenface detection - train a classifier to distinguish black faces from non-black faces and use the trained
+classifier to detect if an actor is black based on their portrait.
+Potential reading material/code inspiration:
+http://www.mathworks.com/matlabcentral/fileexchange/45915-eigenfaces-algorithm
 Consult the workings of a madman: http://www.nndb.com/
 
 
