@@ -3,9 +3,13 @@
 In this project, we aim to conduct a series of enrichment tests in order to study the probability of racial bias in the selection of Academy Award nominees. Our core procedure is based around the classic Hypergeometric Enrichment Test:
 
 N: Total number of active actors/actresses in 2014
+
 K: Total number of active actors/actresses in 2014 who are of race X
+
 n: Total number of actors/actresses nominated for an Oscar for 2014 performances
+
 k: Total number of actors/actresses nominated for an Oscar for 2014 performances who are of race X
+
 
 We determine N by examining the cast listings for all movies made in the year 2014. This was done using tMDB (https://www.themoviedb.org/). This product uses the TMDb API but is not endorsed or certified by TMDb.
 
