@@ -27,3 +27,5 @@ We're currently using this year's (2015) nominees for Best Lead Actor, Best Lead
 http://www.bunchecenter.ucla.edu/wp-content/uploads/2014/02/2014-Hollywood-Diversity-Report-2-12-14.pdf
 
 http://oscar.go.com/nominees
+
+http://www.oscars.org/sites/default/files/87aa_rules.pdf
