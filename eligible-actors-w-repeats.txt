@@ -840,7 +840,6 @@ Jackson Frazer
 Vanessa Redgrave
 Sienna Miller
 Samara Lee
-FRANK
 Michael Fassbender
 Domhnall Gleeson
 Scoot McNairy
@@ -923,8 +922,7 @@ Paddy Considine
 Stéphane Debac
 Brice Fournier
 Aurélien Cavaud
-Emilio De
-Marchi
+Emilio De Marchi
 Armin Dillenberger
 John Friedmann
 Martin Marquez
@@ -2828,8 +2826,7 @@ Mckayla Twiggs
 Brenda Wehle
 Maggie Geha
 Caitlin Dulany
-Harriett D
-Foy
+Harriett D. Foy
 Zach Braff
 Donald Faison
 Josh Gad
