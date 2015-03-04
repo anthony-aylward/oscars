@@ -20,7 +20,7 @@ We determine K by using the listings of personal details on NNDB (http://www.nnd
 
 Under various criteria, we are consistently observing an over-representation of white actors and actresses in the relevant 2014 Academy Award categories (p < 0.05). Results are not yet finalized.
 
-We're currently using this year's (2015) nominees for Best Lead Actor, Best Lead Actress, Best Supporting Actor, and Best Supporting actress as the foreground dataset. It is notable that this year's nominees for those categories are ALL white, so the fully-fledged hypergeometric test might actually be overkill. In this case, the question "are whites over-represented?" boils down to "are at least 99.75 % of nomination-eligible actors white?"
+We're currently using this year's (2015) nominees for Best Lead Actor, Best Lead Actress, Best Supporting Actor, and Best Supporting actress as the foreground dataset. It is notable that this year's nominees for those categories are ALL white, so the fully-fledged hypergeometric test might actually be overkill. In this case, the question "are white nominees over-represented in these categories?" boils down to "are at least 99.75 % of nomination-eligible actors white?"
 
 
 ## Some external links
