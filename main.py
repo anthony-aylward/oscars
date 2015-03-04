@@ -458,12 +458,30 @@ import scipy.stats as stats
 P_Value_OverRepresentation = stats.hypergeom.sf(int(k) - 1,int(N),int(K),int(n))
 P_Value_UnderRepresentation = stats.hypergeom.cdf(int(k) + 1,int(N),int(K),int(n))
 
+# Weighted hypergeometric enrichment
+import numpy as np
+White_Weight = np.mean([i.weight for i in White_Actors])
+Minority_Weight = np.mean([i.weight for i in Minority_Actors])
+White_Bias = float(White_Weight)/float(Minority_Weight)
+if Race_To_Test_Enrichment == "white":
+    K_Adj = int(round(K * White_Bias))
+    N_Adj = K_Adj + (N-K)
+elif Race_To_Test_Enrichment == "black":
+    pass
+P_Adj_OverRepresentation = stats.hypergeom.sf(int(k) - 1,int(N_Adj),int(K_Adj),int(n))
+P_Adj_UnderRepresentation = stats.hypergeom.cdf(int(k) + 1,int(N_Adj),int(K_Adj),int(n))
+
 #===============================================================
 # OUTPUT
 #===============================================================
 print " "
+print "WITH NO WEIGHTS:"
 print "Overrepresentation p-value: " + str(P_Value_OverRepresentation)
 print "Underrepresentation p-value: " + str(P_Value_UnderRepresentation)
+print " "
+print "WITH WEIGHT ACCORDING TO MEAN MOVIE BUDGET PER DEMOGRAPHIC:"
+print "Overrepresentation p-value: " + str(P_Adj_OverRepresentation)
+print "Underrepresentation p-value: " + str(P_Adj_UnderRepresentation)
 print " "
 print "ASSUMPTIONS:"
 if Race_To_Test_Enrichment == "black":
