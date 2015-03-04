@@ -28,4 +28,5 @@ http://www.bunchecenter.ucla.edu/wp-content/uploads/2014/02/2014-Hollywood-Diver
 
 http://oscar.go.com/nominees
 
-http://www.oscars.org/sites/default/files/87aa_rules.pdf
+The 323 films deemed eligible for the 87'th academy awards, and the eligible actors from each:
+http://www.oscars.org/sites/default/files/2014_reminder_list.pdf
