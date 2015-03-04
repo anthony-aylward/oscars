@@ -536,8 +536,7 @@ Gary Oldman
 Toby Kebbell
 Kodi Smit-McPhee
 Kirk Acevedo
-Nick
-Thurston
+Nick Thurston
 Terry Notary
 Jon Eyez
 Enrique Murciano
@@ -1007,8 +1006,7 @@ Missi Pyle
 Emily Ratajkowski
 Casey Wilson
 Lola Kirke
-Sela A
-Ward
+Sela A. Ward
 Kathleen Rose Perkins
 Arnold Oceng
 Ger Duany
@@ -1765,9 +1763,7 @@ Liam Neeson
 Charlize Theron
 Amanda Seyfried
 Sarah Silverman
-Deepak Saroj
-Venu
-Md
+Deepak Saroj Venu Md.
 Farooque
 Rch
 Rushini
@@ -1845,8 +1841,7 @@ Ty Burrell
 Tina Fey
 Tom Sizemore
 Greg Winter
-Sheldon F
-Robins
+Sheldon F. Robins
 Randy Irwin
 Jamison Haase
 Dante Basco
@@ -1908,8 +1903,7 @@ Mariann Mayberry
 Andrea Grano
 Idris Elba
 Henry Simmons
-Taraji P
-Henson
+Taraji P. Henson
 Leslie Bibb
 Kate del Castillo
 Mirage Spann
