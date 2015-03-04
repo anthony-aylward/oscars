@@ -1779,8 +1779,7 @@ Mel Brooks
 Patrick Warburton
 Stephen Tobolowsky
 Guillaume Aretos
-Patrice A
-Musick
+Patrice A. Musick
 Karan Brar
 Ariel Winter
 Leslie Mann
