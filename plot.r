@@ -133,7 +133,7 @@ points(
     pch=19,
     col="blue"
 )
-points(breakdown[["Year"]][c(68,70,71,87)], breakdown[["White.Nominees"]][c(68,70,71,87)], col="red", type="h", lwd="2")
+points(breakdown[["Year"]][c(68,70,71,87)], breakdown[["White.Nominees"]][c(68,70,71,87)], col="red", type="h", lwd="2", lty=3)
 points(breakdown[["Year"]][c(68,70,71,87)], breakdown[["White.Nominees"]][c(68,70,71,87)], pch=19, col="red")
 
 # Turn off the graphics device.
@@ -205,6 +205,6 @@ points(
     pch=19,
     col="blue"
 )
-points(breakdown[["Year"]][c(68,70,71,87)], breakdown[["White.Nominees"]][c(68,70,71,87)], col="red", type="h", lwd="2")
+points(breakdown[["Year"]][c(68,70,71,87)], breakdown[["White.Nominees"]][c(68,70,71,87)], col="red", type="h", lwd="2", lty=3)
 points(breakdown[["Year"]][c(68,70,71,87)], breakdown[["White.Nominees"]][c(68,70,71,87)], pch=19, col="red")
 dev.off()
