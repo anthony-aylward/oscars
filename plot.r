@@ -128,12 +128,12 @@ lines(
 
 points(breakdown[["Year"]], breakdown[["White.Nominees"]], pch=19, col="black")
 points(
-    breakdown[["Year"]][c(64,67:length(breakdown[["Year"]]))],
-    breakdown[["White.Nominees"]][c(64,67:length(breakdown[["Year"]]))],
+    breakdown[["Year"]][c(64,67,68,70:length(breakdown[["Year"]]))],
+    breakdown[["White.Nominees"]][c(64,67,68,70:length(breakdown[["Year"]]))],
     pch=19,
     col="blue"
 )
-points(breakdown[["Year"]][c(68,70,71,87)], breakdown[["White.Nominees"]][c(68,70,71,87)], pch=19, col="red", type="h", lwd="2")
+points(breakdown[["Year"]][c(68,70,71,87)], breakdown[["White.Nominees"]][c(68,70,71,87)], col="red", type="h", lwd="2")
 points(breakdown[["Year"]][c(68,70,71,87)], breakdown[["White.Nominees"]][c(68,70,71,87)], pch=19, col="red")
 
 # Turn off the graphics device.
@@ -200,11 +200,11 @@ lines(
 )
 
 points(
-    breakdown[["Year"]][c(64,67:length(breakdown[["Year"]]))],
-    breakdown[["White.Nominees"]][c(64,67:length(breakdown[["Year"]]))],
+    breakdown[["Year"]][c(64,67,68,70:length(breakdown[["Year"]]))],
+    breakdown[["White.Nominees"]][c(64,67,68,70:length(breakdown[["Year"]]))],
     pch=19,
     col="blue"
 )
-points(breakdown[["Year"]][c(68,70,71,87)], breakdown[["White.Nominees"]][c(68,70,71,87)], pch=19, col="red", type="h", lwd="2")
+points(breakdown[["Year"]][c(68,70,71,87)], breakdown[["White.Nominees"]][c(68,70,71,87)], col="red", type="h", lwd="2")
 points(breakdown[["Year"]][c(68,70,71,87)], breakdown[["White.Nominees"]][c(68,70,71,87)], pch=19, col="red")
 dev.off()
