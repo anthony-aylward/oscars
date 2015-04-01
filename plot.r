@@ -33,11 +33,11 @@ for (i in 1:length(breakdown[[1]])) {
 #                                   Plotting                                   #
 #------------------------------------------------------------------------------#
 
-# Initialize the plotting device, in this case a png
+# Initialize the graphics device, in this case a pdf
 
 png("plot.png", width = 1200, height = 480)
 
-# Create a new plot with enough space to display all the data.
+# Create a plot with enough space to display the data.
 
 plot(breakdown[["Year"]], breakdown[["Nominees"]], type="n", ann=FALSE)
 title(
@@ -113,7 +113,7 @@ polygon(
     col="lightgray"
 )
 
-# Plot and color the points.
+# Plot the points.
 
 points(breakdown[["Year"]], breakdown[["White.Nominees"]], pch=19, col="black")
 points(
@@ -125,11 +125,11 @@ points(
 points(breakdown[["Year"]][c(68,70,71,87)], breakdown[["White.Nominees"]][c(68,70,71,87)], pch=19, col="red", type="h", lwd="2")
 points(breakdown[["Year"]][c(68,70,71,87)], breakdown[["White.Nominees"]][c(68,70,71,87)], pch=19, col="red")
 
-# Turn off the plotting device
+# Turn off the graphics device.
 
 dev.off()
 
-# Draw the cropped plot analagously.
+# Create the cropped version of the plot analagously.
 
 png("plot-cropped.png", width = 480, height = 480)
 plot(c(breakdown[["Year"]][63:87], 2015), c(breakdown[["White.Nominees"]][63:87], 0), type="n", ann=FALSE)
