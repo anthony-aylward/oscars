@@ -113,6 +113,17 @@ polygon(
     col="lightgray"
 )
 
+# Plot a line showing the white fraction of the background population, 
+# normalized to the number of nominees.
+
+lines(
+    breakdown[["Year"]],
+    breakdown[["White.Actors"]]/breakdown[["Actors"]]*breakdown[["Nominees"]],
+    type="l",
+    col="gold",
+    lwd="2"
+)
+
 # Plot the points.
 
 points(breakdown[["Year"]], breakdown[["White.Nominees"]], pch=19, col="black")
@@ -132,7 +143,7 @@ dev.off()
 # Create the cropped version of the plot analagously.
 
 png("plot-cropped.png", width = 480, height = 480)
-plot(c(breakdown[["Year"]][63:87], 2015), c(breakdown[["White.Nominees"]][63:87], 0), type="n", ann=FALSE)
+plot(breakdown[["Year"]][63:87], breakdown[["White.Nominees"]][63:87], type="n", ann=FALSE)
 title(
     main="Number of white Oscar nominees in ''actor'' categories, by year", 
     xlab="Year"
@@ -179,6 +190,15 @@ polygon(
     border=NA,
     col="lightgray"
 )
+
+lines(
+    breakdown[["Year"]][63:87],
+    breakdown[["White.Actors"]][63:87]/breakdown[["Actors"]][63:87]*breakdown[["Nominees"]][63:87],
+    type="l",
+    col="gold",
+    lwd="2"
+)
+
 points(
     breakdown[["Year"]][c(64,67:length(breakdown[["Year"]]))],
     breakdown[["White.Nominees"]][c(64,67:length(breakdown[["Year"]]))],
