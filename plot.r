@@ -33,7 +33,7 @@ for (i in 1:length(breakdown[[1]])) {
 #                                   Plotting                                   #
 #------------------------------------------------------------------------------#
 
-# Initialize the graphics device, in this case a pdf
+# Initialize the graphics device, in this case a png.
 
 png("plot.png", width = 1200, height = 480)
 
