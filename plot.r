@@ -142,7 +142,7 @@ dev.off()
 
 # Create the cropped version of the plot analagously.
 
-png("plot-cropped.png", width = 480, height = 480)
+png("plot-cropped.png", width = 480, height = 360)
 plot(breakdown[["Year"]][63:87], breakdown[["White.Nominees"]][63:87], type="n", ann=FALSE)
 title(
     main="Number of white Oscar nominees in ''actor'' categories, by year", 
